@@ -67,7 +67,6 @@ html='''
 from flask import Flask, request , render_template
 import subprocess , webbrowser
 ip=open('ip.txt', 'r').read().split("\n")
-lc=open('lua_chon.txt', 'r').read().split("\n")
 app = Flask(__name__)
 
 @app.route("/")
