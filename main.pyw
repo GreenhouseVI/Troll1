@@ -16,11 +16,11 @@ html='''
   <h1></h1>
   <button onclick="sendHello7()">rì sét</button>
   <h1></h1>
-  <button onclick="sendHello4()">Lựa Chọn 1</button>
-  <h1></h1>
-  <button onclick="sendHello5()">Lựa Chọn 2</button>
-  <h1></h1>
-  <button onclick="sendHello6()">Lựa Chọn 3</button>
+    <form action="/send_message" method="post">
+        <input type="text" name="message" placeholder="Nhập link">
+        <input type="submit" value="Gửi">
+    </form>
+  
    <script>
     function sendHello1() {
       // Gửi yêu cầu đến chương trình Python
@@ -43,33 +43,6 @@ html='''
 	function sendHello3() {
       // Gửi yêu cầu đến chương trình Python
       fetch("/hello3", {
-        method: "POST",
-      }).then(response => {
-        // Xử lý phản hồi từ chương trình Python
-        console.log(response);
-      });
-    }
-	function sendHello4() {
-      // Gửi yêu cầu đến chương trình Python
-      fetch("/hello4", {
-        method: "POST",
-      }).then(response => {
-        // Xử lý phản hồi từ chương trình Python
-        console.log(response);
-      });
-    }
-	function sendHello5() {
-      // Gửi yêu cầu đến chương trình Python
-      fetch("/hello5", {
-        method: "POST",
-      }).then(response => {
-        // Xử lý phản hồi từ chương trình Python
-        console.log(response);
-      });
-    }
-	function sendHello6() {
-      // Gửi yêu cầu đến chương trình Python
-      fetch("/hello6", {
         method: "POST",
       }).then(response => {
         // Xử lý phản hồi từ chương trình Python
@@ -116,16 +89,13 @@ def hello3():
 def hello4():
   webbrowser.open_new_tab(lc[0])
   return 'ok'
-@app.route("/hello5", methods=["POST"])
-def hello5():
-  webbrowser.open_new_tab(lc[1])
-  return 'ok'
-@app.route("/hello6", methods=["POST"])
-def hello6():
-  webbrowser.open_new_tab(lc[2])
-  return 'ok'
+@app.route("/send_message", methods=["POST"])
+def send_message():
+    message = request.form["message"]
+    print(message)
+    return 'Thanh cong'
 @app.route("/hello7", methods=["POST"])
-def hello7():
+def hello7(message):
   subprocess.Popen("shutdown.exe -r -t 0")
   return 'ok'
 if __name__ == "__main__":
