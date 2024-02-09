@@ -83,10 +83,6 @@ def hello2():
 def hello3():
   subprocess.Popen("shutdown.exe -s -t 0")
   return 'ok'
-@app.route("/hello4", methods=["POST"])
-def hello4():
-  webbrowser.open_new_tab(lc[0])
-  return 'ok'
 @app.route("/send_message", methods=["POST"])
 def send_message():
     message = request.form["message"]
